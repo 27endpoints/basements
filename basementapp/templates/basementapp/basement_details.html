@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwa-{{ Resident.Resident_name }}</title>
+    {% load static %}
+    <style>
+      /*START HERE---This css file  contain all styles for the Basement project */
+body{
+  background-color: #212121;
+}
+
+
+.back_btn {
+  background-color: #212121;
+  width: 100%;
+  height: 30px;
+}
+.back_btn .material-symbols-outlined {
+  color: #fff;
+  cursor: pointer;
+}
+
+.material-symbols-outlined figcaption {
+  color: #000000;
+}
+/*setting up popup style*/
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.popUp {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+  
+}
+
+.update{
+  display: flex;
+  justify-content: center;
+}
+.top-content {
+  height: min-content;
+  display: flex;
+  justify-content: space-between;
+}
+.top-content img {
+  object-fit: cover;
+}
+.contact_button{
+  background-color: #6693f5;
+} 
+.details-container {
+  overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.slide-container {
+  overflow-x: scroll;
+}
+.image-container {
+  display: flex;
+  width: 275px;
+  gap: 3px;
+}
+.image-container img{
+  width: 300px;
+  height: 200px;  object-fit: cover;
+}
+
+
+.popUp::-webkit-scrollbar {
+  display: none;
+  overflow-x: hidden;
+}
+
+.image-container img:not(:first-child) {
+  display: none;
+}
+.horizontal-img {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 15px;
+
+}
+.horizontal-img img {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+table {
+  width: 100%;
+  /* border-collapse: collapse; */
+}
+/* table, td, tr{
+  border: 1px solid #000000;
+} */
+
+.contact-landlord-container {
+  display: flex;
+  justify-content: center;
+}
+.contact-landlord {
+  display: flex;
+  flex-direction: column;
+}
+td {
+  text-transform: capitalize;
+  font-size: 13px;
+}
+
+.info{
+  width: 100px;
+  height: 100px;
+}
+
+
+#cancel{
+  display: flex;
+  align-items: self-end;
+  float: right;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+}
+#cancel button:not(:first-child){
+  background-color: #6693f5;
+}
+
+
+
+
+.prop-name{
+  text-align: center;
+}
+
+
+.price-row{
+  display: flex;
+  justify-content: space-between;
+ 
+  
+}
+
+.img-center-portal{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+/*media queries here*/
+@media (max-width: 716px) {
+  .horizontal-img {
+    display: none;
+  }
+  .image-container img:not(:first-child) {
+    display: block;
+  }
+  .Ress {
+    width: 190px;
+    height: 250px;
+  }
+  
+  .Ress img{
+    width: 188px;
+    height: 120px;
+    
+    object-fit: cover;
+  }
+  .location{
+    margin-top: -5px;
+  }
+ 
+  
+}
+@media (min-width: 716px) and (max-width: 952px) {
+  .horizontal-img img {
+    width: 200px;
+  }
+  
+
+}
+    </style>
+</head>
+<body>
+    <div class="popUp"> 
+        <div class="top-container">
+          <div class="top-content">
+            <span class="material-symbols-outlined location_on"> location_on </span>
+            <h3>Kwa-{{ Resident.Resident_name }}</h3>
+            <span class="material-symbols-outlined"> <a href="{% url 'Residents_collection_view' %}">close</a> </span>            
+          </div>
+          <br />
+          <div class="details-container">
+            <div class="slide-container">
+              <div class="image-container">
+                <img src="{% static 'basementapp/House.jpg' %}" alt="House" />
+                <img src="{% static 'basementapp/House.jpg' %}" alt="House " />
+                <img src="{% static 'basementapp/House.jpg' %}" alt="House" />
+              </div>
+            </div>
+  
+            <div class="description-container">
+              <table>
+                <tr>
+                  <td>relative location</td>
+                  <td>{{ Resident.relative_location }}</td>
+                </tr>
+                <tr>
+                  <td>single</td>
+                  <td>{{ Resident.single_room_price }}</td>
+                </tr>
+                <tr>
+                  <td>Double</td>
+                  <td>{{ Resident.double_room_price }}</td>
+                </tr>
+                <tr>
+                  <td>Commune</td>
+                  <td>{{ Resident.commune_room_price }}</td>
+                </tr>
+                <tr>
+                  <td>
+                    Extras
+                  </td>
+                  <td>
+                </td>
+                </tr>
+                <tr>
+                  <td>lavatory</td>
+                  <td>{{ Resident.Lavatory }}</td>
+                </tr>
+  
+                <tr>
+                  <td>estimated walk</td>
+                  <td>{{ Resident.Estimated_walk }}mins to campus</td>
+                </tr>
+                <tr>
+                  <td>Vacant rooms</td>
+                  <td>{{ Resident.vacant_rooms }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <br />
+          <div class="contact-landlord-container">
+            <div class="contact-landlord">
+              <div><img src="#placeholders\icons8_discord_new.ico" alt="" /></div>
+              <!-- <div>
+                <a href="#discordlink here">
+                  <button class="contact_button"  type="button">contact</button>
+                </a>
+              </div> -->
+            </div>
+          </div>
+          <br />
+          <div class="horizontal-img">
+            <img src="{% static 'basementapp/House.jpg' %}" alt="House" />
+            <img src="{% static 'basementapp/House.jpg' %}" alt="House" />
+            <img src="{% static 'basementapp/House.jpg' %}" alt="House" />
+          </div>
+        </div>
+      </div>
+</body>
+</html>

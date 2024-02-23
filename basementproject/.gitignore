@@ -1,0 +1,13 @@
+#ignore virtula environment files
+venv/
+
+#Other common excelusions for Django project
+db.sqlite3
+--pycache--/
+*.pyc
+*.pyo
+*.pyd
+
+#ignore editor specif files
+*.swp
+.vscode/
